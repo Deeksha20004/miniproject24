@@ -1,0 +1,190 @@
+<style>
+  /* General form styling */
+.default-form.contact-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout adjustments for side-by-side elements (2 per line) */
+.default-form .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.default-form .col-md-6 {
+  width: 48%;  /* Ensures two elements per line with some spacing */
+}
+
+.default-form .col-md-12 {
+  width: 100%;  /* Full width for the last row */
+}
+
+.default-form .form-group {
+  margin-bottom: 15px;
+}
+
+.default-form .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+/* Email field specific styling */
+.default-form input[type="email"], 
+.default-form input[type="text"],
+.default-form select,
+.default-form textarea {
+  padding-left: 10px;  /* Ensures consistent padding */
+}
+
+/* Textarea styling (Message box) */
+.default-form textarea {
+  resize: none;
+  height: 160px; /* Make textarea larger */
+  text-align: center;
+}
+
+/* Submit button styling */
+.btn-style-one {
+  background: #007bff;
+  color: #fff;
+  padding: 12px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+}
+
+/* Hover effect for submit button */
+.btn-style-one:hover {
+  background: #0056b3;
+}
+
+/* Centering the submit and generate copy buttons */
+.default-form .form-group.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;  /* Gap between the buttons */
+  margin-top: 20px;
+}
+
+/* Styling for generate copy button */
+.generate-copy {
+  background: #17a2b8;
+  border: none;
+  padding: 12px 20px;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.generate-copy:hover {
+  background: #138496;
+}
+
+/* Styling for the generated details section */
+#generated-details {
+  margin-top: 20px;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#generated-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#generated-details ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+</style>
+
+<form name="contact_form" class="default-form contact-form" action="!#" method="post">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <input class="form-control" type="text" name="Name" placeholder="Name" required="">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <input class="form-control" type="email" name="Email" placeholder="Email" required="">
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="form-group">
+        <input class="form-control" type="text" name="Phone" placeholder="Phone" required="">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <input class="form-control" type="text" name="Date" placeholder="Date" required="" id="datepicker" autocomplete="off">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <select class="form-control" name="hospital">
+          <option>Hospital</option>
+          <option>Hospital 1</option>
+          <option>Hospital 2</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <select class="form-control" name="department">
+          <option>Departments</option>
+          <option>Diagnostic</option>
+          <option>Psychological</option>
+        </select>
+      </div>
+    </div> 
+    
+    <div class="col-md-6">
+      <div class="form-group">
+        <select class="form-control" name="doctor">
+          <option>Doctor</option>
+          <option>Doctor 1</option>
+          <option>Doctor 2</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="form-group">
+        <textarea class="form-control" name="form_message" placeholder="Your Message" required=""></textarea>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group text-center">
+        <button type="submit" class="btn-style-one">Submit Now</button>
+        <button type="button" class="generate-copy" onclick="generateCopy()">Generate Copy</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Placeholder for Generated Copy -->
+<div id="generated-details" style="display: none;">
+  <ul>
+    <!-- Generated details will be inserted here -->
+  </ul>
+</div>

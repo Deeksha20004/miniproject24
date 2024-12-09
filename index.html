@@ -68,24 +68,24 @@
               <li>
                 <img src="images/slides/1.jpg" alt="" />
                 <div class="flex-caption container">
-                    <h3>Get Well Soon</h3> 
-					<p>Doloribus omnis minus temporibus perferendis.</p> 
+                    <h3>Your Health, Our Priority </h3> 
+					<p> Simplifying Healthcare for Everyone.</p> 
 					<a href="#" class="btn btn-theme">Read More</a>
                 </div>
               </li>
               <li>
                 <img src="images/slides/2.jpg" alt="" />
                 <div class="flex-caption container">
-                    <h3>Fully Responsive</h3> 
-					<p>Lorem ipsum dolor sit amet, consectetur adipisi.</p> 
+                    <h3>Smart Health</h3> 
+					<p>Empowering You with Smart Healthcare Solutions</p> 
 					<a href="#" class="btn btn-theme">Read More</a>
                 </div>
               </li>
               <li>
                 <img src="images/slides/3.jpg" alt="" />
                 <div class="flex-caption container">
-                    <h3>The Bootstrap</h3> 
-					<p>Lorem ipsum dolor sit amet, consectetur ersf.</p> 
+                    <h3>Your Details, Your Way </h3> 
+					<p>Access Medical Assistance Anytime, Anywhere</p> 
 					<a href="#" class="btn btn-theme">Read More</a>
                 </div>
               </li>
@@ -94,7 +94,7 @@
 	<!-- end slider -->
   </div>
   <div class="container hero-text2">
-  <h3>Lorem ipsum dolor sit amet, ea eum labitur scsstie percipitoleat<br/> fabulas complectitur deterruisset at pro</h3>
+  <br>Our mission is to simplify healthcare by combining technology with user-friendly design <br> ensuring you get the care you deserve when you need it most.</h3>
   </div>
 </section>
 <section id="services" class="page-section colord">
@@ -103,28 +103,28 @@
       <!-- item -->
       <div class="col-md-3 text-center"><div class="b1"> <i class="circle"><img src="images/a1.jpg" alt="" /></i>
         <h3>Consultation</h3>
-        <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer elit imperdiet congue.</p>
+        <p>Schedule and manage your medical appointments with ease.</p>
       </div></div>
       <!-- end: --> 
       
       <!-- item -->
       <div class="col-md-3 text-center"><div class="b1"><i class="circle"> <img src="images/a2.jpg" alt="" /></i>
-        <h3>Critical Care</h3>
-        <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer elit imperdiet congue.</p>
+        <h3>Medical Records</h3>
+        <p>Securely save and access your medical records at your fingertips.</p>
       </div></div>
       <!-- end: --> 
       
       <!-- item -->
       <div class="col-md-3 text-center"><div class="b1"><i class="circle"> <img src="images/a3.jpg" alt="" /></i>
-        <h3>Womens Care</h3>
-        <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer ultricies sed elit impe.</p>
+        <h3>Quick Search</h3>
+        <p>Find the nearest hospitals and clinics in just one click.</p>
       </div></div>
       <!-- end: --> 
       
       <!-- item -->
       <div class="col-md-3 text-center"><div class="b1"><i class="circle"> <img src="images/a4.jpg" alt="" /></i>
-        <h3>Children Care</h3>
-        <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer elit imperdiet conempus.</p>
+        <h3>Your Hospital</h3>
+        <p>View and manage hospital details effortlessly in one place.</p>
       </div></div>
       <!-- end:--> 
     </div>  
@@ -290,62 +290,186 @@
     <div class="team-content">
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-6"> 
-          <!-- Team Member -->
-          <div class="team-member pDark"> 
-            <!-- Image Hover Block -->
-            <div class="member-img"> 
-              <!-- Image  --> 
-              <img class="img-responsive" src="images/photo-1.jpg" alt=""> </div>
-            <!-- Member Details -->
-            <h4>John Doe</h4>
-            <!-- Designation --> 
-            <span class="pos">CEO</span>
-            <div class="team-socials"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-github"></i></a> </div>
+          <style>
+            /* Appointment Form Styling */
+.appointment-form {
+  width: 50%;               /* Set the form width to 50% */
+  max-height: 100%;         /* Make the form's height flexible to container's height */
+  display: flex;            /* Use flexbox to allow vertical stretching */
+  justify-content: center;  /* Center the form horizontally */
+  align-items: flex-start;  /* Align the form vertically to the start */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  overflow-y: auto;         /* Allows scrolling if content overflows */
+}
+
+/* Ensure the form inside the appointment form container doesn't stretch more than necessary */
+.default-form.contact-form {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout adjustments for side-by-side elements (2 per line) */
+.default-form .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.default-form .col-md-6 {
+  width: 48%;  /* Ensures two elements per line with some spacing */
+}
+
+.default-form .col-md-12 {
+  width: 100%;  /* Full width for the last row */
+}
+
+.default-form .form-group {
+  margin-bottom: 15px;
+}
+
+.default-form .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.default-form .form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Textarea styling */
+.default-form textarea {
+  resize: none;
+  height: 160px; /* Make textarea larger */
+}
+
+/* Submit button styling */
+.btn-style-one {
+  background: #007bff;
+  color: #fff;
+  padding: 12px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+}
+
+.btn-style-one:hover {
+  background: #0056b3;
+}
+
+/* Centering the submit and generate copy buttons */
+.default-form .form-group.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;  /* Gap between the buttons */
+  margin-top: 20px;
+}
+
+/* Styling for generate copy button */
+.generate-copy {
+  background: #17a2b8;
+  border: none;
+  padding: 12px 20px;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.generate-copy:hover {
+  background: #138496;
+}
+
+          </style>
+          
+          <form name="contact_form" class="default-form contact-form" action="!#" method="post">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="Name" placeholder="Name" required="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" type="email" name="Email" placeholder="Email" required="">
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="Phone" placeholder="Phone" required="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="Date" placeholder="Date" required="" id="datepicker" autocomplete="off">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control" name="hospital">
+                    <option>Hospital</option>
+                    <option>Hospital 1</option>
+                    <option>Hospital 2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control" name="department">
+                    <option>Departments</option>
+                    <option>Diagnostic</option>
+                    <option>Psychological</option>
+                  </select>
+                </div>
+              </div> 
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control" name="doctor">
+                    <option>Doctor</option>
+                    <option>Doctor 1</option>
+                    <option>Doctor 2</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control" name="form_message" placeholder="Your Message" required=""></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group text-center">
+                  <button type="submit" class="btn-style-one">Submit Now</button>
+                  <button type="button" class="generate-copy" onclick="generateCopy()">Generate Copy</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          
+          <!-- Placeholder for Generated Copy -->
+          <div id="generated-details" style="display: none;">
+            <ul>
+              <!-- Generated details will be inserted here -->
+            </ul>
           </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-6"> 
-          <!-- Team Member -->
-          <div class="team-member pDark"> 
-            <!-- Image Hover Block -->
-            <div class="member-img"> 
-              <!-- Image  --> 
-              <img class="img-responsive" src="images/photo-2.jpg" alt=""> </div>
-            <!-- Member Details -->
-            <h4>Larry Doe</h4>
-            <!-- Designation --> 
-            <span class="pos">Sr. Physician
-			</span>
-            <div class="team-socials"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-github"></i></a> </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-6"> 
-          <!-- Team Member -->
-          <div class="team-member pDark"> 
-            <!-- Image Hover Block -->
-            <div class="member-img"> 
-              <!-- Image  --> 
-              <img class="img-responsive" src="images/photo-3.jpg" alt=""> </div>
-            <!-- Member Details -->
-            <h4>Ranith Kays</h4>
-            <!-- Designation --> 
-            <span class="pos">Heart Surgeon</span>
-            <div class="team-socials"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-github"></i></a> </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-6"> 
-          <!-- Team Member -->
-          <div class="team-member pDark"> 
-            <!-- Image Hover Block -->
-            <div class="member-img"> 
-              <!-- Image  --> 
-              <img class="img-responsive" src="images/photo-4.jpg" alt=""> </div>
-            <!-- Member Details -->
-            <h4>Joan Ray</h4>
-            <!-- Designation --> 
-            <span class="pos">Gen. Physician</span>
-            <div class="team-socials"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-github"></i></a> </div>
-          </div>
-        </div>
+          
       </div>
     </div>
   </div>
