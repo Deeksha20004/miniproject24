@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Montaga&family=Outfit:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montaga", sans-serif;
+    
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #007bff;
+    
+}
+
+#root {
+    width: 100%;
+    padding: 0 0.6rem;
+}
+
+.login-container {
+    background: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    border-radius: 2.3rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.login-container .form-title {
+    text-align: center;
+    font-size: 3.0rem;
+    font-weight: 600;
+    margin-bottom: 1.87rem;
+}
+
+.login-container .social-login {
+    display: flex;
+    gap: 1.31rem;
+}
+
+.social-login .social-button {
+    display: flex;
+    width: 100%;
+    gap: 0.1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.31rem;
+    background: #F9F8FF;
+    border: 1px solid #D5CBFF;
+    transition: 0.3s ease;
+}
+
+.social-login .social-button img {
+    margin-left: 0.5rem;
+}
+
+.social-login .social-button:hover {
+    background: #f1eff9;
+    border-color: #5e46c9;
+}
+
+.social-login .social-button .social-icon {
+    width: 20px;
+}
+
+.login-container .separator {
+    margin: 1.5rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.login-container .separator span {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    padding: 0 0.9rem;
+    font-size: 1.06rem;
+    font-weight: 500;
+}
+
+.login-container .separator::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: #bfb3f2;
+}
+
+.form .input-wrapper {
+    height: 54px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form .input-wrapper .input-field {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 1.06rem;
+    border-radius: 0.31rem;
+    border: 1px solid #bfb3f2;
+    padding: 0 1.25rem 0 3.12rem;
+    transition: 0.2s ease;
+}
+
+.form .input-wrapper .input-field:focus {
+    border-color: #5F41E4;
+    box-shadow: 0 0 4px rgba(95, 65, 228, 0.3);
+}
+
+.form .input-wrapper .input-field::placeholder {
+    color: #a395e0;
+}
+
+.form .input-wrapper .input-field span {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 0.9rem;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.2s ease;
+}
+
+.form .input-wrapper i {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 0.9rem;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.2s ease;
+    font-size: larger;
+}
+
+.form .input-wrapper .input-field:focus ~ span {
+    color: #5F41E4;
+}
+
+.form .forgot-pass-link {
+    display: block;
+    width: fit-content;
+    margin-top: -0.9rem;
+    text-decoration: underline;
+    margin-left: 20.0rem;
+}
+
+.form .forgot-pass-link:hover {
+    color: rgb(248, 65, 65);
+    transition: 0.5s;
+}
+
+.form .login-button {
+    width: 45%;
+    height: 54px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.130rem;
+    background: #5F41E4;
+    margin-top: 2.19rem;
+    border-radius: 1.7rem;
+    transition: 0.2s ease;
+    margin-left: 7.8rem;
+    background-color: rgb(34, 49, 133);
+    box-shadow: #fff;
+}
+
+.form .login-button:hover {}
+
+.login-container .signup-text {
+    text-align: center;
+    font-weight: 500;
+    margin: 1.75rem 0 0.31rem;
+}
+
+.login-container a {
+    color: #5F41E4;
+    font-weight: 500;
+    text-decoration: none;
+}
