@@ -31,6 +31,8 @@
 <link href="font/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/index.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link rel="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="css/sh.css">
+
 </head>
 
 <body>
@@ -63,9 +65,20 @@
           </li>
 
 
-          <li><a href="#work" class="scroll-link">Quick Search</a></li>
-          <li><a href="#plans" class="scroll-link">Nearby Hospital</a></li>
-        </ul>
+          <li><a href="#work" class="scroll-link">Locate Hospital</a></li>
+          <li id="search-hospital-btn" class="dropdown">
+            <a href="#" class="scroll-link" data-toggle="dropdown">Search Hospital <i class="fa-solid fa-caret-down"></i></a>
+            <div class="dropdown-menu" id="searchHospitalSection">
+              <input 
+                type="text" 
+                id="search-input" 
+                class="form-control" 
+                placeholder="Search by hospital name..." 
+                onkeyup="filterHospitals()"
+              />
+              <ul id="hospitalList" style="list-style: none; padding: 0; margin-top: 10px; max-height: 200px; overflow-y: auto;">
+                <!-- Search results will appear here -->
+              </ul>       
       </div>
       <!--/.navbar-collapse--> 
     </nav>
@@ -346,5 +359,8 @@
 
 <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2024/11/28/06/20241128061155-E2QA2FSW.js"></script>
+<script src="js/sh.js"></script> 
+
+
 </body>
 </html>
