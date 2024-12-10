@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    .dashboard {
+      max-width: 1200px;
+      margin: 20px auto;
+      background:  rgba(173, 216, 230, 0.7);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    .form-section {
+      margin-bottom: 20px;
+    }
+    .form-section h2 {
+      font-size: 20px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .form-group input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .department-entry {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .physician-entry {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .availability-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #bbb;
+      cursor: pointer;
+    }
+    .availability-circle.green {
+      background-color: green;
+    }
+    .availability-circle.red {
+      background-color: red;
+    }
+    .button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="header">Hospital Admin Dashboard</div>
+
+    <!-- Hospital Information Section -->
+    <div class="form-section">
+      <h2>Hospital Information</h2>
+      <div class="form-group">
+        <label>Hospital Name:</label>
+        <input type="text" name="hospitalName" placeholder="Enter hospital name" required>
+      </div>
+      <div class="form-group">
+        <label>Hospital Address:</label>
+        <textarea name="hospitalAddress" placeholder="Enter hospital address" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Total Rooms:</label>
+        <input type="number" name="totalRooms" placeholder="Enter total rooms" required>
+      </div>
+      <div class="form-group">
+        <label>Occupied Rooms:</label>
+        <input type="number" name="occupiedRooms" placeholder="Enter occupied rooms" required>
+      </div>
+      <div class="form-group">
+        <label>Available Rooms:</label>
+        <input type="number" name="availableRooms" placeholder="Enter available rooms" required>
+      </div>
+      <div class="form-group">
+        <label>Emergency Rooms Available:</label>
+        <input type="number" name="emergencyRooms" placeholder="Enter emergency rooms" required>
+      </div>
+    </div>
+
+    <!-- Departments and Physicians Section -->
+    <div class="form-section">
+      <h2>Departments and Physicians</h2>
+      <div id="departments-section">
+        <div class="department-entry">
+          <div class="form-group">
+            <label>Department Name:</label>
+            <input type="text" name="departmentName" placeholder="Enter department name" required>
+          </div>
+          <div id="physicians-list">
+            <div class="physician-entry">
+              <input type="text" name="physicianName" placeholder="Enter physician name" required>
+              <div
+                class="availability-circle green"
+                onclick="toggleAvailability(this)"
+              ></div>
+            </div>
+          </div>
+          <button class="button" onclick="addPhysician(event)">Add Physician</button>
+        </div>
+      </div>
+      <button class="button" onclick="addDepartment()">Add Department</button>
+    </div>
+
+    <!-- Update Button -->
+    <button class="button">Update Details</button>
+
+    <!-- Search Feature -->
+    <div class="form-section">
+      <h2>Search Physicians/Departments</h2>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search by physician or department name..."
+        style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;"
+      >
+    </div>
+  </div>
+
+  <script>
+    function toggleAvailability(circle) {
+      if (circle.classList.contains("green")) {
+        circle.classList.remove("green");
+        circle.classList.add("red");
+      } else {
+        circle.classList.remove("red");
+        circle.classList.add("green");
+      }
+    }
+
+    function addPhysician(event) {
+      event.preventDefault();
+      const physiciansList = event.target.parentNode.querySelector("#physicians-list");
+      const newPhysician = document.createElement("div");
+      newPhysician.classList.add("physician-entry");
+      newPhysician.innerHTML = `
+        <input type="text" name="physicianName" placeholder="Enter physician name" required>
+        <div class="availability-circle green" onclick="toggleAvailability(this)"></div>
+      `;
+      physiciansList.appendChild(newPhysician);
+    }
+
+    function addDepartment() {
+      const departmentsSection = document.getElementById("departments-section");
+      const newDepartment = document.createElement("div");
+      newDepartment.classList.add("department-entry");
+      newDepartment.innerHTML = `
+        <div class="form-group">
+          <label>Department Name:</label>
+          <input type="text" name="departmentName" placeholder="Enter department name" required>
+        </div>
+        <div id="physicians-list">
+          <div class="physician-entry">
+            <input type="text" name="physicianName" placeholder="Enter physician name" required>
+            <div class="availability-circle green" onclick="toggleAvailability(this)"></div>
+          </div>
+        </div>
+        <button class="button" onclick="addPhysician(event)">Add Physician</button>
+      `;
+      departmentsSection.appendChild(newDepartment);
+    }
+  </script>
+</body>
+</html>
