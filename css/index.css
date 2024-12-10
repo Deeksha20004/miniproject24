@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montaga&family=Outfit:wght@100..900&display=swap');
+
+ul.dropdown li {
+    display: block;
+}
+
+.container .backvideo{
+    position: absolute;
+    height: 200px;
+    width: 100vh;
+    right: 0;
+    left: 0;
+    z-index: 0;
+}
+
+ul.dropdown {
+    width: 200%;
+    display: none;
+    position: absolute;
+    left: 100;
+    top: 100%;
+    background-color:white;
+    z-index: 999;
+    min-width: 200px;
+    
+}
+
+ul li:hover ul.dropdown {
+    display: block;
+}
