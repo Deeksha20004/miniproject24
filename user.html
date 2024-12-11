@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>           
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,46 +8,48 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
-    <!-- Inline Style for Map Container -->
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
     <style>
         #map {
-            height: 600px; /* Adjust height as needed */
-            width: 100%; /* Full width of the page */
+            height: 600px;
+            width: 100%;
         }
+
         #search-form {
             margin-bottom: 10px;
         }
     </style>
-</head>
+</head>  
 <body>
     <h3>Nearby Hospitals Map - Search or Current Location</h3>
     
-    <!-- Search for hospitals by location -->
+    <!-- Search Form -->
     <form id="search-form">
         <input type="text" id="location-input" placeholder="Enter place name (e.g., Mangalore)" required />
         <button type="submit">Search</button>
     </form>
     
+    <!-- Button to Use Current Location -->
     <button id="use-my-location">Find Hospitals Near My Current Location</button>
     
     <p id="status">Enter a location to find nearby hospitals or use your current location.</p>
     <div id="map"></div>
-    
-    <!-- Leaflet JavaScript -->
+
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    
     <script>
-        // Initialize the map
-        const map = L.map('map').setView([20.5937, 78.9629], 5); // Default to India
-        
-        // Add OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(map);
+        const map = L.map('map').setView([20.5937, 78.9629], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        const statusElement = document.getElementById("status");
+        let userMarker = null; 
+        let routeControl = null;
 
-        // Function to fetch and display nearby hospitals
-        function fetchHospitals(lat, lon, radius = 5000) { // Default search radius is 5 km
+        // Function to fetch and show nearby hospitals
+        function fetchHospitals(lat, lon, radius = 5000) {
             const overpassUrl = "https://overpass-api.de/api/interpreter";
             const overpassQuery = `
                 [out:json];
@@ -58,19 +60,22 @@
             fetch(`${overpassUrl}?data=${encodeURIComponent(overpassQuery)}`)
                 .then(response => response.json())
                 .then(data => {
-                    if (data.elements.length === 0) {
-                        alert("No hospitals found near this location!");
-                        return;
+                    if (routeControl) {
+                        map.removeControl(routeControl);
                     }
 
-                    // Clear previous markers
+                    // Clear previous hospital markers except userMarker
                     map.eachLayer(layer => {
-                        if (layer instanceof L.Marker) {
+                        if (layer instanceof L.Marker && layer !== userMarker) {
                             map.removeLayer(layer);
                         }
                     });
 
-                    // Loop through hospitals and add markers
+                    if (data.elements.length === 0) {
+                        alert("No hospitals found near this location.");
+                        return;
+                    }
+
                     data.elements.forEach(hospital => {
                         if (hospital.lat && hospital.lon) {
                             const name = hospital.tags.name || "Unnamed Hospital";
@@ -81,81 +86,95 @@
                             marker.bindPopup(`
                                 <b>${name}</b><br>
                                 Address: ${address}<br>
-                                Phone: ${phone}
+                                Phone: ${phone}<br>
+                                <button class='show-route' data-lat="${hospital.lat}" data-lon="${hospital.lon}">Show Route</button>
                             `);
 
-                            marker.on('click', () => {
-                                alert(`
-                                    Hospital Details:
-                                    Name: ${name}
-                                    Address: ${address}
-                                    Phone: ${phone}
-                                `);
+                            // Add event listener for route button click
+                            marker.getPopup().on('add', () => {
+                                const routeButton = document.querySelector('.show-route');
+                                if (routeButton) {
+                                    routeButton.onclick = () => showRoute(hospital.lat, hospital.lon);
+                                }
                             });
                         }
                     });
 
                     map.setView([lat, lon], 13);
-                    statusElement.textContent = "Showing hospitals near the specified location.";
+                    document.getElementById("status").textContent = "Showing hospitals near the specified location.";
                 })
-                .catch(error => {
-                    console.error("Error fetching hospital data:", error);
-                    alert("Failed to load nearby hospitals. Please try again later.");
-                });
+                .catch(err => console.error("Failed to fetch hospitals", err));
         }
 
-        // Handle location search by name (user input)
-        function searchLocation(query) {
-            const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
+        // Handle user's geolocation
+        function getUserLocation() {
+            if (!navigator.geolocation) {
+                alert("Geolocation isn't supported by your browser.");
+                return;
+            }
 
-            fetch(nominatimUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        alert("Location not found. Please try another place.");
-                        return;
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    const { latitude, longitude } = position.coords;
+
+                    if (userMarker) {
+                        userMarker.setLatLng([latitude, longitude]);
+                    } else {
+                        userMarker = L.marker([latitude, longitude], { title: "Your Current Location" }).addTo(map);
+                        userMarker.bindPopup("your current location").openPopup();
                     }
 
-                    const { lat, lon, display_name } = data[0];
-                    statusElement.textContent = `Location found: ${display_name}`;
-                    fetchHospitals(lat, lon);
-                })
-                .catch(error => {
-                    console.error("Error fetching location data:", error);
-                    alert("Failed to find the location. Please try again.");
-                });
-        }
-
-        // Handle user's current location and fetch nearby hospitals
-        function getUserLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    const { latitude, longitude } = position.coords;
-                    statusElement.textContent = "Fetching hospitals near your current location...";
+                    map.setView([latitude, longitude], 13);
                     fetchHospitals(latitude, longitude);
-                }, error => {
-                    console.error("Geolocation error:", error.message);
-                    alert("Unable to fetch your current location. Please check your browser settings.");
-                });
-            } else {
-                alert("Geolocation is not supported by your browser.");
-            }
+                },
+                error => {
+                    alert("Could not fetch your current location.");
+                    console.error(error.message);
+                }
+            );
         }
 
-        // Handle form submission for location-based search
+        // Function to visualize a route
+        function showRoute(hospitalLat, hospitalLon) {
+            if (!userMarker) {
+                alert("Your current location isn't set. Use the 'Find My Current Location' button first.");
+                return;
+            }
+
+            if (routeControl) {
+                map.removeControl(routeControl);
+            }
+
+            routeControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(userMarker.getLatLng()),
+                    L.latLng(hospitalLat, hospitalLon),
+                ],
+                routeWhileDragging: true,
+                createMarker: function() { return null; }
+            }).addTo(map);
+        }
+
+        // Event Listeners
+        document.getElementById("use-my-location").addEventListener("click", getUserLocation);
+
         document.getElementById("search-form").addEventListener("submit", event => {
             event.preventDefault();
             const locationInput = document.getElementById("location-input").value;
             if (locationInput) {
-                statusElement.textContent = "Searching for location...";
-                searchLocation(locationInput);
+                alert("Searching hospitals near this location...");
+                const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationInput)}`;
+                fetch(nominatimUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length === 0) {
+                            alert("Location not found.");
+                        } else {
+                            const { lat, lon } = data[0];
+                            fetchHospitals(lat, lon);
+                        }
+                    });
             }
-        });
-
-        // Handle "Use My Location" button click
-        document.getElementById("use-my-location").addEventListener("click", () => {
-            statusElement.textContent = "Finding hospitals near your current location...";
-            getUserLocation();
         });
     </script>
 </body>
