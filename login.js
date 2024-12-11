@@ -50,6 +50,3 @@ document.getElementById('submitbtn').addEventListener('click', function(event) {
     // If all validations pass, the form will be submitted
     alert("Form submitted successfully.");
 });
-
-
-  

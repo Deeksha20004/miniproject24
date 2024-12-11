@@ -15,7 +15,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $password = mysqli_real_escape_string($con, $password);
 
     // SQL query to select user based on email and password
-    $sql = "SELECT * FROM signup WHERE email='$email' AND psw='$password';";
+    $sql = "SELECT * FROM signhos WHERE email='$email' AND psw='$password';";
 
     // Execute the query
     $result = mysqli_query($con, $sql);
@@ -28,7 +28,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         // If a row is returned, login is successful
         if ($count == 1) {
             echo "Login successful";
-            header("location:dashboard.html"); // 
+            header("location:admin.html"); // 
         } else {
             // Login failed if no matching user is found
             echo "Invalid email or password!";
@@ -43,12 +43,3 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 //     echo "Please enter both email and password.";
 }
 ?>
-
-
-
-
-
-
-
-
-

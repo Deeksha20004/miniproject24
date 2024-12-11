@@ -6,9 +6,9 @@ include('connect.php');
 $name = $_POST['name'];
 $email = $_POST['email'];
 $contact = $_POST['contact'];
-$age = $_POST['age'];
+
 $state = $_POST['state'];
-$gender = $_POST['gender'];
+
 $psw = $_POST['psw'];
 $pswrepeat = $_POST['pswrepeat'];
 
@@ -22,7 +22,7 @@ $hashed_password = password_hash($psw, PASSWORD_DEFAULT);
 
 try {
     // Check if the user already exists
-    $check_sql = "SELECT email FROM signup WHERE email = ?";
+    $check_sql = "SELECT email FROM signhos WHERE email = ?";
     $check_stmt = $con->prepare($check_sql);
     $check_stmt->bind_param("s", $email);
     $check_stmt->execute();
@@ -33,14 +33,14 @@ try {
     $check_stmt->close();
 
     // Prepare SQL Query to insert new user
-    $sql = "INSERT INTO signup (name, email, contact, age, state, gender, psw, pswrepeat) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO signhos (name, email, contact, state, psw, pswrepeat) 
+            VALUES (?, ?, ?, ?, ?, ?)";
 
     // Prepare statement
     $stmt = $con->prepare($sql);
     
     // Bind parameters
-    $stmt->bind_param("ssiissss", $name, $email, $contact, $age, $state, $gender, $psw, $pswrepeat);
+    $stmt->bind_param("ssisss", $name, $email, $contact, $state, $psw, $pswrepeat);
 
     // Execute query
     if ($stmt->execute()) {

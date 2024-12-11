@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const name = document.querySelector('input[name="name"]').value.trim();
         const email = document.querySelector('input[name="email"]').value.trim();
         const contact = document.querySelector('input[name="contact"]').value.trim();
-        const age = document.querySelector('input[name="age"]').value.trim();
+
         const state = document.querySelector('select[name="state"]').value.trim();
-        const gender = document.querySelector('input[name="gender"]:checked');
+     
         const password = document.querySelector('input[name="psw"]').value.trim();
         const confirmPassword = document.querySelector('input[name="pswrepeat"]').value.trim();
   
@@ -35,11 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         }
   
-        // Validate Age
-        if (age === "" || isNaN(age) || parseInt(age) <= 0) {
-            alert("Age must be a positive number.");
-            isValid = false;
-        }
+
   
         // Validate State
         if (state === "") {
@@ -48,11 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
   
   
-        // Validate Gender
-        if (!gender) {
-            alert("Please select a gender.");
-            isValid = false;
-        }
+
   
         // Validate Password
         if (password.length < 6) {
