@@ -28,7 +28,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         // If a row is returned, login is successful
         if ($count == 1) {
             echo "Login successful";
-            header("location:dashboard.html"); // 
+            header("location:medi.php"); // 
         } else {
             // Login failed if no matching user is found
             echo "Invalid email or password!";
