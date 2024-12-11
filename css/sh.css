@@ -1,0 +1,47 @@
+#searchHospitalSection {
+    padding: 15px;
+    max-width: 300px;
+    display: block;
+  }
+  
+  #hospitalList li {
+    padding: 8px;
+    background-color: #189cb7;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #hospitalList li:hover {
+    background-color: #dcdcdc;
+  }
+  
+  #search-input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 400px; /* Adjust width as needed */
+}
+
+#searchHospitalSection {
+    display: none;
+    position: absolute; /* Absolute positioning for dropdown */
+    top: 100%; /* Position it just below the button */
+    left: 50%; /* Align horizontally to the center of the button */
+    transform: translateX(-50%); /* Center the dropdown */
+    background: white;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 400px;
+    width: 100%; /* Adjust width if needed */
+    border-radius: 4px;/*just to match or exceed the input width */
+}
+
+  
+  #searchHospitalSection.visible {
+    display: block;
+  }
+  
+  
