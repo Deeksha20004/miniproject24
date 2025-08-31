@@ -49,8 +49,8 @@ Helps patients get up-to-date information instantly.
 🧱 Built With
 Frontend: HTML, CSS, JavaScript 
 
-Backend: Node.js / 	Java with Spring Boot
+Backend: PHP ,Django
 
-Database: MongoDB / MySQL 
+Database: MySQL 
 
-Location API: Google Maps / OpenStreetMap
+Location API: Google Maps
